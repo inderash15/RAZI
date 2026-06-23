@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Razi – Authentic Arabic Restaurant. Experience the royal taste of authentic Arabian cuisine with traditional recipes handcrafted with passion and heritage." />
+    <meta name="keywords" content="Arabic restaurant, Mandi, Shawarma, Arabian cuisine, authentic Arabic food, Razi restaurant, Coimbatore Luxury Dining" />
+    <title>Razi – Authentic Arabic Restaurant</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      
+        :root {
+            --bg-main: #F1EAE1;
+            --bg-card: #FFFFFF;
+            --teal: #005A54;
+            --teal-dark: #00433E;
+            --gold: #D1A153;
+            --gold-light: #E5C287;
+            --text-dark: #1A2E2B;
+            --text-muted: #6E7E7B;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-arabic: 'Amiri', serif;
+            --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            --radius: 4px;
+        }
+
+        /* ──── BASE RESET ──── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            background: var(--bg-main);
+            color: var(--text-dark);
+            font-family: var(--font-body);
+            line-height: 1.65;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; transition: var(--transition); }
+        input, select, textarea { font-family: inherit; }
+
+        /* Subtle Geometric Background Pattern */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M30 0 L60 30 L30 60 L0 30 Z" fill="none" stroke="%23005A54" stroke-width="0.35"/></svg>');
+            opacity: 0.06;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 2px; }
+
+        /* ──── LAYOUT UTILITIES ──── */
+        .container { width: 90%; max-width: 1240px; margin: 0 auto; position: relative; z-index: 2; }
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-eyebrow {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.3em;
+            text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-family: var(--font-heading); font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 400; color: var(--teal); line-height: 1.2;
+        }
+        .section-title em { font-style: italic; color: var(--gold); }
+        .section-desc {
+            margin-top: 1rem; color: var(--text-muted); font-size: 1rem;
+            max-width: 520px; margin-left: auto; margin-right: auto;
+        }
+        .gold-rule { width: 50px; height: 1px; background: var(--gold); margin: 1.5rem auto; }
+
+        /* ──── PREMIUM BUTTONS ──── */
+        .btn-primary {
+            display: inline-block; padding: 1.1rem 2.6rem; background: var(--teal);
+            color: var(--bg-main); font-size: 0.8rem; font-weight: 600;
+            letter-spacing: 0.15em; text-transform: uppercase; border-radius: var(--radius);
+        }
+        .btn-primary:hover {
+            background: var(--teal-dark); transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 90, 84, 0.15);
+        }
+        .btn-secondary {
+            display: inline-block; padding: 1.05rem 2.6rem; background: transparent;
+            color: var(--teal); font-size: 0.8rem; font-weight: 600;
+            letter-spacing: 0.15em; text-transform: uppercase; border-radius: var(--radius);
+            border: 1px solid rgba(0, 90, 84, 0.4);
+        }
+        .btn-secondary:hover {
+            border-color: var(--teal); background: rgba(0, 90, 84, 0.04); transform: translateY(-3px);
+        }
+        .btn-whatsapp {
+            display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+            padding: 1rem 2rem; background: #25D366; color: white;
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; border-radius: var(--radius);
+        }
+        .btn-whatsapp:hover { background: #1da851; transform: translateY(-2px); }
+
+        /* ──── SCROLL REVEAL ANIMATIONS ──── */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ═══════════════════ LOADING SCREEN ═══════════════════ */
+        #loader {
+            position: fixed; inset: 0; z-index: 9999; background: var(--bg-main);
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .loader-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; position: relative; }
+        .loader-pattern { width: 140px; height: 140px; position: absolute; animation: loaderSpin 16s linear infinite; opacity: 0.15; }
+        @keyframes loaderSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        .loader-logo { font-family: var(--font-heading); font-size: 2.8rem; font-weight: 600; letter-spacing: 0.3em; color: var(--teal); text-transform: uppercase; }
+        .loader-arabic { font-family: var(--font-arabic); font-size: 1.5rem; color: var(--gold); margin-top: -0.5rem; }
+        .loader-bar { width: 140px; height: 1px; background: rgba(0, 90, 84, 0.1); position: relative; overflow: hidden; }
+        .loader-fill { height: 100%; width: 0%; background: var(--gold); animation: loadFill 2s ease forwards; }
+        @keyframes loadFill { to { width: 100%; } }
+
+        /* ═══════════════════ NAVBAR ═══════════════════ */
+        #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 3rem; transition: var(--transition); }
+        #navbar.scrolled { background: rgba(241, 234, 225, 0.96); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 90, 84, 0.08); }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; height: 90px; }
+        .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+        .logo-en { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 600; letter-spacing: 0.15em; color: var(--teal); }
+        .logo-ar { font-family: var(--font-arabic); font-size: 0.9rem; color: var(--gold); letter-spacing: 0.05em; margin-top: 0.1rem; }
+        .nav-links { display: flex; list-style: none; gap: 3rem; align-items: center; }
+        .nav-links a { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark); }
+        .nav-links a:hover, .nav-links a.active { color: var(--teal); }
+        .btn-order-nav {
+            display: flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1.6rem; background: var(--teal);
+            color: var(--bg-main); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: var(--radius); position: relative;
+        }
+        .btn-order-nav:hover { background: var(--teal-dark); transform: translateY(-2px); }
+        .cart-badge {
+            position: absolute; top: -6px; right: -6px; background: var(--gold); color: white;
+            width: 18px; height: 18px; border-radius: 50%; font-size: 0.65rem; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .cart-badge:empty { display: none; }
+        .hamburger { display: none; flex-direction: column; gap: 6px; }
+        .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--teal); transition: var(--transition); }
+        
+        .mobile-menu {
+            display: none; flex-direction: column; background: rgba(241, 234, 225, 0.98); backdrop-filter: blur(20px);
+            padding: 1.5rem 2rem; border-top: 1px solid rgba(0, 90, 84, 0.08);
+        }
+        .mobile-menu a { padding: 1rem 0; border-bottom: 1px solid rgba(0, 90, 84, 0.04); font-size: 0.9rem; font-weight: 600; color: var(--text-dark); letter-spacing: 0.05em; }
+        .mobile-menu.open { display: flex; }
+
+        /* ═══════════════════ HERO ═══════════════════ */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--bg-main) 0%, #E9E1D7 100%);
+            padding-top: 100px;
+        }
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+            width: 90%;
+            max-width: 1240px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: left;
+            padding: 2rem 0;
+        }
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: flex-start;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+        }
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.8rem, 5vw, 4.8rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--teal);
+            margin-bottom: 1.5rem;
+        }
+        .hero-title span { display: block; }
+        .hero-title .title-italic { font-style: italic; color: var(--gold); font-weight: 300; }
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            margin-bottom: 1.2rem;
+            max-width: 500px;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+        .hero-arabic {
+            font-family: var(--font-arabic);
+            font-size: 1.6rem;
+            color: rgba(0, 90, 84, 0.2);
+            margin-bottom: 2rem;
+        }
+        .hero-ctas {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .hero-visual::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 4 / 5;
+            border: 1.5px solid var(--gold);
+            border-radius: 200px 200px 20px 20px;
+            top: 40px;
+            left: 40px;
+            z-index: 1;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+        .hero-visual:hover::before {
+            transform: translate(-15px, -15px);
+        }
+        .hero-image-frame {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 4 / 5;
+            border-radius: 200px 200px 20px 20px;
+            overflow: hidden;
+            border: 8px solid var(--bg-card);
+            box-shadow: 0 25px 55px rgba(0, 90, 84, 0.12);
+            z-index: 2;
+            transition: var(--transition);
+        }
+        .hero-image-frame:hover {
+            box-shadow: 0 35px 70px rgba(0, 90, 84, 0.18);
+        }
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .hero-image-frame:hover .hero-img {
+            transform: scale(1.08);
+        }
+        .hero-badge {
+            position: absolute;
+            bottom: 40px;
+            left: -10px;
+            background: var(--bg-card);
+            padding: 0.8rem 1.4rem;
+            border-radius: var(--radius);
+            box-shadow: 0 12px 30px rgba(0, 90, 84, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            z-index: 10;
+            border: 1px solid rgba(0, 90, 84, 0.06);
+            animation: floatBadge 4s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes floatBadge {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-12px); }
+        }
+        .badge-icon {
+            font-size: 1.4rem;
+        }
+        .badge-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.25;
+            text-align: left;
+        }
+        .badge-text strong {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--teal);
+        }
+        .badge-text span {
+            font-size: 0.7rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        /* ═══════════════════ MARQUEE STRIP ═══════════════════ */
+        .marquee-strip { overflow: hidden; background: var(--teal); padding: 1.2rem 0; box-shadow: 0 10px 30px rgba(0, 90, 84, 0.05); }
+        .marquee-track { display: flex; gap: 3rem; white-space: nowrap; animation: marquee 30s linear infinite; font-family: var(--font-heading); font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bg-main); }
+        .sep { color: var(--gold-light); }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* ═══════════════════ HOUSE SPECIALTIES ═══════════════════ */
+        .featured-section { padding: 9rem 0; background: rgba(255, 255, 255, 0.4); }
+        .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .featured-card {
+            padding: 3.5rem 2.5rem; background: var(--bg-card); border: 1px solid rgba(0, 90, 84, 0.05);
+            border-radius: var(--radius); transition: var(--transition); box-shadow: 0 10px 35px rgba(0,0,0,0.02);
+        }
+        .featured-card:hover { transform: translateY(-6px); border-color: rgba(0, 90, 84, 0.15); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05); }
+        .featured-card h3 { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 500; color: var(--teal); margin-bottom: 1rem; }
+        .featured-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 2rem; }
+        .featured-link { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 0.5rem; }
+        .featured-link:hover { color: var(--teal); }
+
+        /* ═══════════════════ MENU SECTION ═══════════════════ */
+        .menu-section { padding: 9rem 0; position: relative; }
+        .menu-tabs { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 4rem; }
+        .tab-btn { padding: 0.7rem 1.8rem; background: transparent; color: var(--text-dark); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(0, 90, 84, 0.1); border-radius: var(--radius); }
+        .tab-btn:hover { border-color: var(--teal); }
+        .tab-btn.active { background: var(--teal); color: var(--bg-main); border-color: var(--teal); }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
+        .menu-card { background: var(--bg-card); border: 1px solid rgba(0, 90, 84, 0.04); border-radius: var(--radius); overflow: hidden; transition: var(--transition); box-shadow: 0 10px 40px rgba(0,0,0,0.02); }
+        .menu-card:hover { transform: translateY(-6px); border-color: rgba(0, 90, 84, 0.12); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05); }
+        .menu-card-body { padding: 2rem; }
+        .menu-cat-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+        .menu-card-body h4 { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 500; color: var(--teal); margin-bottom: 0.6rem; }
+        .menu-card-body p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; height: 45px; overflow: hidden; }
+        .menu-card-footer { display: flex; align-items: center; justify-content: space-between; }
+        .menu-price { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 600; color: var(--teal); }
+        .btn-add-cart { display: flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.2rem; background: rgba(0, 90, 84, 0.05); color: var(--teal); border-radius: var(--radius); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+        .btn-add-cart:hover { background: var(--teal); color: var(--bg-main); }
+
+        /* ═══════════════════ ABOUT STORY ═══════════════════ */
+        .about-section { padding: 9rem 0; background: rgba(255,255,255,0.6); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: center; }
+        .about-visual { position: relative; padding: 1rem; }
+        .about-visual::before { content: ""; position: absolute; top: 0; left: 0; width: 85%; height: 90%; border: 1px solid var(--gold); z-index: 1; }
+        .about-visual img { position: relative; z-index: 2; box-shadow: 0 20px 50px rgba(0,0,0,0.05); width: 100%; height: 480px; object-fit: cover; }
+        .about-arabic-quote { font-family: var(--font-arabic); font-size: 1.4rem; color: var(--teal); text-align: right; padding: 1rem 1.5rem; border-right: 2px solid var(--gold); margin: 2rem 0; direction: rtl; }
+        .quote-translation { font-family: var(--font-body); font-size: 0.85rem; color: var(--text-muted); font-style: italic; text-align: left; direction: ltr; margin-top: 0.4rem; font-weight: 400; }
+        .about-text { color: var(--text-muted); font-size: 1rem; line-height: 1.85; margin-bottom: 1.5rem; }
+
+        /* ═══════════════════ GALLERY MASONRY ═══════════════════ */
+        .gallery-section { padding: 9rem 0; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .gallery-item { position: relative; overflow: hidden; height: 280px; border-radius: var(--radius); }
+        .gallery-item.tall { grid-row: span 2; height: 585px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .gallery-overlay { position: absolute; inset: 0; background: rgba(0, 90, 84, 0.85); display: flex; align-items: center; justify-content: center; opacity: 0; transition: var(--transition); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-overlay span { font-family: var(--font-heading); font-size: 1.4rem; color: white; letter-spacing: 0.05em; }
+
+        /* ═══════════════════ TESTIMONIALS ═══════════════════ */
+        .reviews-section { padding: 9rem 0; text-align: center; }
+        .reviews-slider { max-width: 800px; margin: 0 auto 3rem; position: relative; min-height: 220px; }
+        .review-card { position: absolute; inset: 0; background: var(--bg-card); border-radius: var(--radius); padding: 3.5rem; border: 1px solid rgba(0, 90, 84, 0.04); opacity: 0; transform: scale(0.95); transition: var(--transition); pointer-events: none; box-shadow: 0 15px 45px rgba(0,0,0,0.02); }
+        .review-card.active { opacity: 1; transform: scale(1); pointer-events: all; }
+        .review-stars { color: var(--gold); margin-bottom: 1.5rem; font-size: 0.9rem; letter-spacing: 2px; }
+        .review-text { font-family: var(--font-heading); font-size: 1.4rem; font-style: italic; color: var(--text-dark); line-height: 1.65; margin-bottom: 2rem; }
+        .review-author { font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); font-weight: 700; }
+        .reviews-controls { display: flex; align-items: center; justify-content: center; gap: 1.5rem; }
+        .rev-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(0, 90, 84, 0.15); color: var(--teal); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .rev-btn:hover { background: var(--teal); color: white; border-color: var(--teal); }
+        .rev-dots { display: flex; gap: 0.5rem; }
+        .rev-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(0, 90, 84, 0.15); }
+        .rev-dot.active { background: var(--teal); width: 24px; border-radius: 3px; transition: width 0.3s ease; }
+
+        /* ═══════════════════ CONTACT & DETAILS ═══════════════════ */
+        .contact-section { padding: 9rem 0; background: rgba(255,255,255,0.5); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 5rem; }
+        .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+        .contact-card { padding: 2rem; background: var(--bg-card); border: 1px solid rgba(0, 90, 84, 0.04); border-radius: var(--radius); box-shadow: 0 10px 30px rgba(0,0,0,0.01); }
+        .contact-card h4 { font-family: var(--font-heading); font-size: 1.25rem; color: var(--teal); margin-bottom: 0.5rem; }
+        .contact-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+        .reservation-form { background: var(--bg-card); border: 1px solid rgba(0, 90, 84, 0.05); border-radius: var(--radius); padding: 3rem; box-shadow: 0 20px 50px rgba(0,0,0,0.02); }
+        .reservation-form h3 { font-family: var(--font-heading); font-size: 1.8rem; color: var(--teal); margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
+        .form-input { width: 100%; padding: 0.9rem 1.2rem; background: var(--bg-main); border: 1px solid transparent; border-radius: var(--radius); color: var(--text-dark); font-size: 0.9rem; outline: none; transition: var(--transition); }
+        .form-input:focus { border-color: rgba(0, 90, 84, 0.3); background: #FFF; }
+        .form-textarea { resize: vertical; min-height: 90px; display: block; }
+
+        /* ═══════════════════ FOOTER BRANDING ═══════════════════ */
+        .footer { padding: 6rem 0 3rem; background: var(--teal); color: var(--bg-main); border-top: 1px solid rgba(0, 90, 84, 0.1); }
+        .footer-main { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 4rem; padding-bottom: 4rem; }
+        .footer-logo { font-family: var(--font-heading); font-size: 2.4rem; font-weight: 600; letter-spacing: 0.15em; color: white; margin-bottom: 0.2rem; }
+        .footer-logo-ar { font-family: var(--font-arabic); font-size: 1rem; color: var(--gold-light); margin-bottom: 1.5rem; }
+        .footer-brand p { font-size: 0.9rem; color: rgba(241, 234, 225, 0.7); line-height: 1.8; }
+        .footer-links-col h5 { font-family: var(--font-heading); font-size: 1.2rem; color: white; margin-bottom: 1.5rem; font-weight: 500; }
+        .footer-links-col a, .footer-links-col span { display: block; font-size: 0.9rem; color: rgba(241, 234, 225, 0.7); margin-bottom: 0.75rem; line-height: 1.6; }
+        .footer-links-col a:hover { color: var(--gold-light); }
+        .footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2.5rem; }
+        .footer-bottom p { font-size: 0.85rem; color: rgba(241, 234, 225, 0.5); letter-spacing: 0.05em; }
+
+        /* ═══════════════════ LUXURY CART DRAWER ═══════════════════ */
+        .cart-overlay { position: fixed; inset: 0; z-index: 1100; background: rgba(0, 43, 39, 0.3); backdrop-filter: blur(8px); opacity: 0; visibility: hidden; transition: var(--transition); }
+        .cart-overlay.open { opacity: 1; visibility: visible; }
+        .cart-drawer { position: fixed; top: 0; right: -440px; bottom: 0; width: 100%; max-width: 440px; z-index: 1200; background: var(--bg-card); border-left: 1px solid rgba(0, 90, 84, 0.08); display: flex; flex-direction: column; transition: right 0.5s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: -20px 0 50px rgba(0,0,0,0.03); }
+        .cart-drawer.open { right: 0; }
+        .cart-header { display: flex; align-items: center; justify-content: space-between; padding: 2rem; border-bottom: 1px solid rgba(0, 90, 84, 0.06); }
+        .cart-header h3 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--teal); }
+        .cart-close { color: var(--text-muted); font-size: 1.4rem; }
+        .cart-items { flex: 1; overflow-y: auto; padding: 2rem; }
+        .cart-empty { text-align: center; padding: 4rem 0; color: var(--text-muted); }
+        .cart-item { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 0; border-bottom: 1px solid rgba(0, 90, 84, 0.04); }
+        .cart-item-info strong { display: block; color: var(--teal); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .cart-item-info span { font-size: 0.9rem; color: var(--gold); font-weight: 600; }
+        .cart-item-controls { display: flex; align-items: center; gap: 0.75rem; }
+        .qty-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid rgba(0, 90, 84, 0.15); color: var(--teal); display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+        .qty-btn:hover { background: var(--teal); color: white; }
+        .qty-display { min-width: 20px; text-align: center; font-size: 0.95rem; font-weight: 600; color: var(--text-dark); }
+        .cart-footer { padding: 2rem; border-top: 1px solid rgba(0, 90, 84, 0.06); background: rgba(241, 234, 225, 0.2); }
+        .cart-total { display: flex; justify-content: space-between; font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; color: var(--teal); margin-bottom: 1.5rem; }
+
+        /* ═══════════════════ MODAL OVERLAYS ═══════════════════ */
+        .modal-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(0, 43, 39, 0.4); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 1rem; }
+        .modal-box { background: var(--bg-card); border: 1px solid rgba(0, 90, 84, 0.08); border-radius: var(--radius); padding: 3rem; max-width: 540px; width: 100%; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.06); }
+        .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; color: var(--text-muted); font-size: 1.3rem; }
+        .modal-box h3 { font-family: var(--font-heading); font-size: 2rem; color: var(--teal); text-align: center; margin-bottom: 0.5rem; }
+        .checkout-item { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(0, 90, 84, 0.04); font-size: 0.95rem; }
+        .checkout-item span:first-child { color: var(--text-muted); }
+        .checkout-item span:last-child { color: var(--teal); font-weight: 600; }
+        .checkout-total { display: flex; justify-content: space-between; padding: 1rem 0; font-family: var(--font-heading); font-size: 1.4rem; color: var(--teal); font-weight: 600; border-top: 1px solid rgba(0, 90, 84, 0.1); margin-top: 0.5rem; }
+
+        /* Floating Interactive Elements */
+        .floating-whatsapp { position: fixed; bottom: 2.5rem; right: 2.5rem; z-index: 900; width: 56px; height: 56px; border-radius: 50%; background: #25D366; color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(37,211,102,0.25); }
+        .floating-whatsapp:hover { transform: scale(1.08); }
+
+        /* ──── RESPONSIVE BREAKPOINTS ──── */
+        @media (max-width: 1024px) {
+            .hero {
+                padding-top: 120px;
+                padding-bottom: 4rem;
+                min-height: auto;
+            }
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+            .hero-content {
+                text-align: center;
+                max-width: 650px;
+                margin: 0 auto;
+                padding: 0;
+            }
+            .hero-eyebrow {
+                justify-content: center;
+            }
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-ctas {
+                justify-content: center;
+            }
+            .hero-visual {
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+            .hero-visual::before {
+                max-width: 290px;
+                top: 25px;
+                left: 50%;
+                transform: translateX(-50%) translate(15px, 15px);
+            }
+            .hero-visual:hover::before {
+                transform: translateX(-50%) translate(5px, 5px);
+            }
+            .hero-image-frame {
+                max-width: 290px;
+            }
+            .hero-badge {
+                bottom: 25px;
+                left: 50%;
+                transform: translateX(-110%);
+                animation: floatBadgeMobile 4s ease-in-out infinite alternate;
+            }
+            @keyframes floatBadgeMobile {
+                0% { transform: translateX(-110%) translateY(0); }
+                100% { transform: translateX(-110%) translateY(-10px); }
+            }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+            .about-visual { max-width: 500px; margin: 0 auto; }
+            .footer-main { grid-template-columns: 1fr 1fr; gap: 3rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item.tall { height: 280px; grid-row: auto; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .featured-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 3rem; }
+            #navbar { padding: 0 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-inner">
+            <svg class="loader-pattern" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="200" fill="none" stroke="#005A54" stroke-width="0.5"/>
+            </svg>
+            <div class="loader-logo">RAZI</div>
+            <div class="loader-arabic">رازي</div>
+            <div class="loader-bar"><div class="loader-fill"></div></div>
+        </div>
+    </div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-en">RAZI</span>
+                <span class="logo-ar">رازي</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="btn-order-nav" onclick="openCart()">
+                    Order Online <span class="cart-badge" id="cartBadge"></span>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#home" onclick="closeMobile()">Home</a>
+            <a href="#menu" onclick="closeMobile()">Menu</a>
+            <a href="#about" onclick="closeMobile()">About</a>
+            <a href="#gallery" onclick="closeMobile()">Gallery</a>
+            <a href="#reviews" onclick="closeMobile()">Reviews</a>
+            <a href="#contact" onclick="closeMobile()">Contact</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-eyebrow">
+                    <span>Authentic Arabian Culinary · Coimbatore</span>
+                </div>
+                <h1 class="hero-title">
+                    <span>Authentic</span>
+                    <span class="title-italic">Arabic Flavours</span>
+                </h1>
+                <p class="hero-subtitle">Traditional culinary recipes, handcrafted with profound passion and heritage fit for royalty.</p>
+                <div class="hero-arabic">نكهات عربية أصيلة</div>
+                <div class="hero-ctas">
+                    <a href="#menu" class="btn-primary">Order Delicacies</a>
+                    <a href="#contact" class="btn-secondary">Book A Table</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-frame">
+                    <img src="hero_mandi_dish.png" alt="Signature Mandi Royale Dish" class="hero-img" />
+                    <div class="hero-badge">
+                        <span class="badge-icon">👑</span>
+                        <div class="badge-text">
+                            <strong>Signature</strong>
+                            <span>Mandi Royale</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee-strip">
+        <div class="marquee-track">
+            <span>Mandi Royale</span><span class="sep">✦</span>
+            <span>Lamb Ouzi</span><span class="sep">✦</span>
+            <span>Chicken Shawarma Classic</span><span class="sep">✦</span>
+            <span>Kabsa Al Mamlakah</span><span class="sep">✦</span>
+            <span>Grilled Gulf Hammour</span><span class="sep">✦</span>
+            <span>Kunafa Royale</span><span class="sep">✦</span>
+            <span>Mandi Royale</span><span class="sep">✦</span>
+            <span>Lamb Ouzi</span><span class="sep">✦</span>
+            <span>Chicken Shawarma Classic</span><span class="sep">✦</span>
+        </div>
+    </div>
+
+    <section class="featured-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-eyebrow">Signature Dishes</div>
+                <h2 class="section-title">Crafted for Connoisseurs</h2>
+                <div class="gold-rule"></div>
+            </div>
+            <div class="featured-grid">
+                <div class="featured-card reveal">
+                    <h3>Mandi Royale</h3>
+                    <p>Slow-smoked whole lamb over fragile aromatic basmati rice, seasoned delicately with twelve heritage spices.</p>
+                    <a href="#menu" class="featured-link">View Menu <span>→</span></a>
+                </div>
+                <div class="featured-card reveal" style="border-color: var(--gold);">
+                    <h3>Lamb Ouzi</h3>
+                    <p>An epicurean legend — remarkably tender whole lamb slow-roasted to absolute perfection with rich saffron overlay.</p>
+                    <a href="#menu" class="featured-link">View Menu <span>→</span></a>
+                </div>
+                <div class="featured-card reveal">
+                    <h3>Shawarma Al Malak</h3>
+                    <p>Finest cuts marinated continuously for twenty-four hours within our elite signature blend of Arabian spices.</p>
+                    <a href="#menu" class="featured-link">View Menu <span>→</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-eyebrow">The Treasury</div>
+                <h2 class="section-title">A Curated Gastronomic Journey</h2>
+                <div class="gold-rule"></div>
+            </div>
+
+            <div class="menu-tabs reveal">
+                <button class="tab-btn active" data-cat="all">All Offerings</button>
+                <button class="tab-btn" data-cat="mandi">Mandi</button>
+                <button class="tab-btn" data-cat="grills">Grills</button>
+                <button class="tab-btn" data-cat="shawarma">Shawarma</button>
+                <button class="tab-btn" data-cat="rice">Arabian Rice</button>
+                <button class="tab-btn" data-cat="desserts">Desserts</button>
+            </div>
+
+            <div class="menu-grid" id="menuGrid">
+                </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-eyebrow">The Esthetics</div>
+                <h2 class="section-title">A Feast For The Eyes</h2>
+                <div class="gold-rule"></div>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item tall reveal">
+                    <img src="https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&q=80&w=600" alt="Mandi Preparation">
+                    <div class="gallery-overlay"><span>The Mandi Heritage</span></div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&q=80&w=600" alt="Premium Grill Artisanship">
+                    <div class="gallery-overlay"><span>Smoked Grills</span></div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=600" alt="Arabic Cold Mezze Platter">
+                    <div class="gallery-overlay"><span>Artisanal Mezze</span></div>
+                </div>
+                <div class="gallery-item tall reveal">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=600" alt="Razi Lounge Architecture">
+                    <div class="gallery-overlay"><span>The Dining Saloon</span></div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" alt="Pistachio Kunafa">
+                    <div class="gallery-overlay"><span>Royal Pastries</span></div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&q=80&w=600" alt="Arabic Saffron Tea Pour">
+                    <div class="gallery-overlay"><span>Qahwa Tradition</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-eyebrow">Guest Acclaim</div>
+                <h2 class="section-title">Voices of Our Patronage</h2>
+                <div class="gold-rule"></div>
+            </div>
+            <div class="reviews-slider">
+                <div class="review-card active">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"The Mandi Royale is astonishingly authentic. The exquisite blend of spices and tender meat is as good as anything you'll find in the Gulf."</p>
+                    <div class="review-author">Mohammed Faizal — Coimbatore, India</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Every detail speaks of authentic Arabian hospitality — from the golden-crusted Kunafa down to the masterfully selected saffron grains."</p>
+                    <div class="review-author">Aisha Rahman — Coimbatore, India</div>
+                </div>
+            </div>
+            <div class="reviews-controls reveal">
+                <button class="rev-btn" onclick="changeReview(-1)">←</button>
+                <div class="rev-dots" id="revDots"></div>
+                <button class="rev-btn" onclick="changeReview(1)">→</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-eyebrow">Location & Booking</div>
+                <h2 class="section-title">Experience Razi Firsthand</h2>
+                <div class="gold-rule"></div>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="contact-card">
+                        <h4>The Estate Address</h4>
+                        <p>Kuniyamuthur, Palakkad Main Road<br />Coimbatore, Tamil Nadu 641008</p>
+                    </div>
+                    <div class="contact-card">
+                        <h4>Hours of Operation</h4>
+                        <p>Open Daily: 11:00 AM – 11:30 PM</p>
+                    </div>
+                    <div class="contact-card">
+                        <h4>Direct Concierge</h4>
+                        <p>+91 86808 11101<br />raziculinaryco@gmail.com</p>
+                    </div>
+                </div>
+                <div class="reservation-form reveal">
+                    <h3>Secure an Imperial Table</h3>
+                    <form onsubmit="event.preventDefault(); alert('✅ Your imperial reservation request has been secured safely.');">
+                        <div class="form-group">
+                            <input type="text" placeholder="Full Name" class="form-input" required />
+                        </div>
+                        <div class="form-row">
+                            <input type="tel" placeholder="Phone Number" class="form-input" required />
+                            <input type="number" placeholder="Guest Count" class="form-input" min="1" max="20" required />
+                        </div>
+                        <div class="form-row">
+                            <input type="date" class="form-input" required />
+                            <input type="time" class="form-input" required />
+                        </div>
+                        <textarea placeholder="Special dietary requests or occasions..." class="form-input form-textarea" rows="3"></textarea>
+                        <button type="submit" class="btn-primary" style="width: 100%;">Confirm Table Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Your Selected Delicacies</h3>
+            <button class="cart-close" onclick="closeCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty" id="cartEmpty">
+                <p>Your culinary tray is empty.</p>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <div class="cart-total">
+                <span>Grand Total:</span>
+                <span id="cartTotalSum">₹0</span>
+            </div>
+            <button class="btn-primary" style="width: 100%;" onclick="openCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeCheckout()">✕</button>
+            <h3>Complete Order Request</h3>
+            <div class="gold-rule"></div>
+            <div id="checkoutSummary"></div>
+            <form onsubmit="event.preventDefault(); alert('✨ Order Secured: Razi Concierge will call you to verify details shortly.'); resetCartState();">
+                <div class="form-group" style="margin-top: 1.5rem;">
+                    <input type="text" placeholder="Full Name" class="form-input" required />
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Phone Number" class="form-input" required />
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Delivery Suite / Villa Address" class="form-input" required />
+                </div>
+                <div class="form-group">
+                    <select class="form-input">
+                        <option>Cash on Delivery</option>
+                        <option>Credit Card Payment via Terminal</option>
+                        <option>Apple Pay Link</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%; margin-top:1rem;">Place Luxury Order</button>
+            </form>
+        </div>
+    </div>
+
+    <a href="https://wa.me/918680811101" class="floating-whatsapp" target="_blank" aria-label="Order via WhatsApp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">RAZI</div>
+                    <div class="footer-logo-ar">رازي</div>
+                    <p>Experience the royal taste of premium authentic Arabian cuisine. Handcrafted heritage preserved carefully across every fine detail.</p>
+                </div>
+                <div class="footer-links-col">
+                    <h5>Navigation</h5>
+                    <a href="#home">Home</a>
+                    <a href="#menu">Treasury Menu</a>
+                    <a href="#about">Our Story</a>
+                    <a href="#gallery">Visuals</a>
+                </div>
+                <div class="footer-links-col">
+                    <h5>Specialties</h5>
+                    <a href="#menu">Mandi Royale</a>
+                    <a href="#menu">Lamb Ouzi</a>
+                    <a href="#menu">Shawarma Al Malak</a>
+                    <a href="#menu">Kunafa Royale</a>
+                </div>
+                <div class="footer-links-col">
+                    <h5>Concierge</h5>
+                    <span>Kuniyamuthur, Palakkad Main Rd</span>
+                    <span>Coimbatore, Tamil Nadu 641008</span>
+                    <span>+91 86808 11101</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Razi Authentic Arabic Restaurant. All architectural assets protected.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // High-Tier Menu Repositories
+        const coreMenuData = [
+            { id: 1, name: "Mandi Royale Whole Lamb", category: "mandi", price: 380, desc: "Slow-smoked lamb served meticulously on aromatic saffron basmati with sweet caramelized onions." },
+            { id: 2, name: "Chicken Mandi Al Aseel", category: "mandi", price: 95, desc: "Free-range chicken organic layers slow-infused with original Yemeni dry ground seasoning." },
+            { id: 3, name: "Lamb Ouzi Feast", category: "grills", price: 420, desc: "Whole slow-roasted lamb shank resting on a majestic bed of cardamom-kissed premium grains." },
+            { id: 4, name: "Mixed Grill Platter Shish", category: "grills", price: 145, desc: "Assortment of masterfully grilled minced skewers, prime beef tenderloins, and fresh toum paste." },
+            { id: 5, name: "Shawarma Al Malak Platter", category: "shawarma", price: 42, desc: "Premium marbled beef cuts layered continuously for 24 hours inside our private spice reductions." },
+            { id: 6, name: "Kabsa Al Mamlakah", category: "rice", price: 88, desc: "Saudi-style deeply spiced heirloom rice cooked with organic rose water and dried black limes." },
+            { id: 7, name: "Kunafa Royale Crisp", category: "desserts", price: 58, desc: "Crispy shredded kataifi dough holding hot molten Nabulsi curd cheese under orange blossom reductions." }
+        ];
+
+        let cartArray = [];
+
+        // App Initial Lifecycle Loops
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                if (loader) loader.classList.add('hidden');
+            }, 1200);
+            renderTreasuryGrid('all');
+            setupScrollSpy();
+        });
+
+        // Navigation Transform States
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // Mobile Menu Toggles
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const spans = hamburger.querySelectorAll('span');
+            if (mobileMenu.classList.contains('open')) {
+                spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                spans.forEach(s => s.style.transform = '');
+                spans.forEach(s => s.style.opacity = '1');
+            }
+        });
+        function closeMobile() { mobileMenu.classList.remove('open'); hamburger.querySelectorAll('span').forEach(s => s.style.transform = ''); }
+
+        // Dynamic Menu Rendering
+        function renderTreasuryGrid(filterCat) {
+            const grid = document.getElementById('menuGrid');
+            grid.innerHTML = '';
+            const filtered = filterCat === 'all' ? coreMenuData : coreMenuData.filter(i => i.category === filterCat);
+
+            filtered.forEach((item, idx) => {
+                const card = document.createElement('div');
+                card.className = 'menu-card reveal visible';
+                card.innerHTML = `
+                    <div class="menu-card-body">
+                        <div class="menu-cat-tag">${item.category}</div>
+                        <h4>${item.name}</h4>
+                        <p>${item.desc}</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-price">₹${item.price}</span>
+                            <button class="btn-add-cart" onclick="addDelicacy(${item.id})">Add To Tray</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Category Tab Switchers
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderTreasuryGrid(btn.dataset.cat);
+            });
+        });
+
+        // Cart State Engine Mechanics
+        function addDelicacy(id) {
+            const match = coreMenuData.find(item => item.id === id);
+            const exist = cartArray.find(item => item.id === id);
+            if (exist) exist.qty++;
+            else cartArray.push({ ...match, qty: 1 });
+            updateCartState();
+            openCart();
+        }
+
+        function updateCartState() {
+            const badge = document.getElementById('cartBadge');
+            const container = document.getElementById('cartItems');
+            const empty = document.getElementById('cartEmpty');
+            const footer = document.getElementById('cartFooter');
+            
+            const totalCount = cartArray.reduce((acc, current) => acc + current.qty, 0);
+            badge.textContent = totalCount > 0 ? totalCount : '';
+
+            if (cartArray.length === 0) {
+                empty.style.display = 'block';
+                footer.style.display = 'none';
+                container.innerHTML = '';
+                container.appendChild(empty);
+                return;
+            }
+
+            empty.style.display = 'none';
+            footer.style.display = 'block';
+            container.innerHTML = '';
+
+            let grandTotal = 0;
+            cartArray.forEach((item, index) => {
+                grandTotal += item.price * item.qty;
+                const row = document.createElement('div');
+                row.className = 'cart-item';
+                row.innerHTML = `
+                    <div class="cart-item-info">
+                        <strong>${item.name}</strong>
+                        <span>₹${item.price * item.qty}</span>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="qty-btn" onclick="alterQty(${index}, -1)">−</button>
+                        <span class="qty-display">${item.qty}</span>
+                        <button class="qty-btn" onclick="alterQty(${index}, 1)">+</button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            document.getElementById('cartTotalSum').textContent = `₹${grandTotal}`;
+        }
+
+        function alterQty(index, change) {
+            cartArray[index].qty += change;
+            if (cartArray[index].qty <= 0) cartArray.splice(index, 1);
+            updateCartState();
+        }
+
+        function openCart() { document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+        function closeCart() { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+
+        // Checkout Presentational Views
+        function openCheckout() {
+            if (cartArray.length === 0) return;
+            closeCart();
+            const modal = document.getElementById('checkoutModal');
+            const summary = document.getElementById('checkoutSummary');
+            let grandTotal = cartArray.reduce((acc, cur) => acc + (cur.price * cur.qty), 0);
+
+            summary.innerHTML = cartArray.map(i => `
+                <div class="checkout-item">
+                    <span>${i.name} × ${i.qty}</span>
+                    <span>₹${i.price * i.qty}</span>
+                </div>
+            `).join('') + `
+                <div class="checkout-total">
+                    <span>Total Bill</span>
+                    <span>₹${grandTotal}</span>
+                </div>
+            `;
+            modal.style.display = 'flex';
+        }
+        function closeCheckout() { document.getElementById('checkoutModal').style.display = 'none'; }
+        function resetCartState() { cartArray = []; updateCartState(); closeCheckout(); }
+
+        // Testimonial Navigation Engine
+        let activeReviewIdx = 0;
+        const reviews = document.querySelectorAll('.review-card');
+        const dotBox = document.getElementById('revDots');
+
+        reviews.forEach((_, idx) => {
+            const d = document.createElement('div');
+            d.className = 'rev-dot' + (idx === 0 ? ' active' : '');
+            dotBox.appendChild(d);
+        });
+
+        function changeReview(dir) {
+            reviews[activeReviewIdx].classList.remove('active');
+            dotBox.children[activeReviewIdx].classList.remove('active');
+            activeReviewIdx = (activeReviewIdx + dir + reviews.length) % reviews.length;
+            reviews[activeReviewIdx].classList.add('active');
+            dotBox.children[activeReviewIdx].classList.add('active');
+        }
+
+        // Clean Scrollspy Engine Logic
+        function setupScrollSpy() {
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.05 });
+            revealElements.forEach(el => observer.observe(el));
+        }
+    </script>
+</body>
+</html>
